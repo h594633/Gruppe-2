@@ -2,6 +2,9 @@ package no.hvl.dat102;
 
 
 public class Film {
+	public enum Sjanger {
+		DRAMA, ACTION, DOKUMENTAR, SCIFI, HISTORIE, WESTERN, NORSK, KOMEDIE, ROMANTISK;
+	}
 
 	private int filmnr;
 	private String produsent;
@@ -23,12 +26,14 @@ public class Film {
 		this.produsent = produsent;
 		this.tittel = tittel;
 		this.aar = aar;
-		this.sjanger = Sjanger.finnSjanger(sjanger);
+		this.sjanger = getSjanger(sjanger);
 		if (this.sjanger == null) {
 			System.out.println("Filmnr: " + filmnr + " mangler sjanger. innput: " + sjanger);
 		}
 		this.filmselskap = filmselskap;
 	}
+	
+	
 
 	@Override
 	public String toString() {
@@ -36,4 +41,17 @@ public class Film {
 				+ ", sjanger=" + sjanger + ", filmselskap=" + filmselskap + "]";
 	}
 	
+	
+	public static Sjanger getSjanger(String sjInput) {
+		Sjanger sjang = null;
+		for (Sjanger sj : Sjanger.values()) {
+			if (sj.toString().equals(sjInput.toUpperCase())) {
+				sjang = sj;
+				return sjang;
+			}
+
+		}
+		return sjang;
+
+	}// Met
 }
