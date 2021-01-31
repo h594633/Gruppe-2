@@ -28,8 +28,9 @@ public class Film  {
 	
 	@Override
 	public String toString() {
-		return "Film [filmnr=" + filmnr + ", produsent=" + produsent + ", tittel=" + tittel + ", aar=" + aar
-				+ ", sjanger=" + sjanger + ", filmselskap=" + filmselskap + "]";
+		return "Film Nr: " + filmnr + ", Producer: " + produsent + ", Title: " + tittel + ", year" + aar
+				+ ", Genre: " + sjanger + ", Company: " + filmselskap + " ]";
+		
 	}
 	
 	public String getTittel() {

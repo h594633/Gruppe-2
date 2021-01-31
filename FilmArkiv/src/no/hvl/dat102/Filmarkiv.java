@@ -5,7 +5,6 @@ public class Filmarkiv implements no.hvl.dat102.adt.FilmarkivADT {
 	private Film[] filmTabell;
 	private int antall;
 
-
 	public Filmarkiv(Film[] filmTabell) {
 		this.filmTabell = filmTabell;
 		antall = 0;
@@ -18,47 +17,70 @@ public class Filmarkiv implements no.hvl.dat102.adt.FilmarkivADT {
 
 	@Override
 	public void leggTilFilm(Film nyFilm) {
-		if (antall < filmTabell.length) {
 
+		if (filmTabell == null) {
+			this.filmTabell = new Film[1];
+			this.filmTabell[0] = nyFilm;
+			antall++;
+		} else {
+			// ser etter film med identisk nr først
 			for (int i = 0; i < filmTabell.length; i++) {
-				if (nyFilm.getFilmnr() == (filmTabell[i].getFilmnr())) {
+				if (filmTabell[i].getFilmnr() == nyFilm.getFilmnr()) {
+					// mangler handling
 				}
 			}
-			filmTabell[antall] = nyFilm;
-		}
 
+			Film[] tempTab = new Film[filmTabell.length + 1];
+			// kopierer over filmer fra gammel tabell til tempTab
+			for (int i = 0; i <= tempTab.length; i++) {
+				tempTab[i] = filmTabell[i];
+			}
+			// øker antall filmer i arkivet med 1, legger inn ny film, og peker til tempTab
+			antall++;
+			tempTab[antall] = nyFilm;
+			this.filmTabell = tempTab;
+
+		}
 	}
 
 	@Override
 	public boolean slettFilm(int filmnr) {
-		int i = 0;
 		boolean funnet = false;
-		while (i < antall) {
+
+		for (int i = 0; i < filmTabell.length; i++) {
 			if (filmTabell[i].getFilmnr() == (filmnr)) {
 				funnet = true;
 				filmTabell[i] = filmTabell[antall];
+				break;
 			}
-			this.filmTabell = trimTab(filmTabell, antall-1);
-
 		}
+
+		if (funnet == true) {
+			antall--;
+			this.filmTabell = trimTab(filmTabell, antall);
+		}
+
 		return funnet;
+
 	}
 
 	@Override
 	public Film[] soekTittel(String delstreng) {
 		Film[] resultat = new Film[filmTabell.length];
 		int funn = 0;
-		
+
 		for (int i = 0; i < filmTabell.length; i++) {
-			
+
 			if (filmTabell[i].getTittel().contains(delstreng)) {
 				resultat[i] = filmTabell[i];
 				funn++;
 			}
-			
+
 		}
 		resultat = trimTab(resultat, funn);
-		if (funn == 0) {System.out.println("Her var det tomt gitt");}
+		if (funn == 0) {
+			System.out.println("Her var det tomt gitt");
+		}
 		return resultat;
 	}
 
@@ -86,18 +108,20 @@ public class Filmarkiv implements no.hvl.dat102.adt.FilmarkivADT {
 
 	@Override
 	public int antall() {
-		int antall = 0;
-		for (int i = 0; i < filmTabell.length; i++) {
-			if (filmTabell[i] != null) {
-				antall++;
-			}
-		}
+//		int antall = 0;
+//		for (int i = 0; i < filmTabell.length; i++) {
+//			if (filmTabell[i] != null) {
+//				antall++;
+//			}
+//		}
 		return antall;
 	}
 
 	private Film[] trimTab(Film[] gammelTab, int antallfilmer) {
+		
 		Film[] nyTab = new Film[antallfilmer];
-		for (int i = 0; i < antallfilmer; i++) {
+		
+		for (int i = 0; i < nyTab.length; i++) {
 			nyTab[i] = gammelTab[i];
 
 		}
