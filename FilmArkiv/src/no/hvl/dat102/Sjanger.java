@@ -3,7 +3,7 @@ package no.hvl.dat102;
 public enum Sjanger {
 	DRAMA, ACTION, DOKUMENTAR, SCIFI, HISTORIE, WESTERN, NORSK, KOMEDIE, ROMANTISK;
 
-	public static Sjanger finnSjanger(String sjInput) {
+	public static Sjanger getSjanger(String sjInput) {
 		Sjanger sjang = null;
 		for (Sjanger sj : Sjanger.values()) {
 			if (sj.toString().equals(sjInput.toUpperCase())) {
@@ -12,6 +12,7 @@ public enum Sjanger {
 			}
 
 		}
+		System.out.println("Sjanger ikke funnet");
 		return sjang;
 
 	}// Met
