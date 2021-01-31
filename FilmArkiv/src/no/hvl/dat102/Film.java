@@ -1,6 +1,6 @@
 package no.hvl.dat102;
 
-public class Film implements no.hvl.dat102.adt.FilmarkivADT {
+public class Film  {
 
 	private int filmnr;
 	private String produsent;
