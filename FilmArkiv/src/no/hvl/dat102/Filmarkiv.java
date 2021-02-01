@@ -32,12 +32,12 @@ public class Filmarkiv implements no.hvl.dat102.adt.FilmarkivADT {
 
 			Film[] tempTab = new Film[filmTabell.length + 1];
 			// kopierer over filmer fra gammel tabell til tempTab
-			for (int i = 0; i <= tempTab.length; i++) {
+			for (int i = 0; i < filmTabell.length; i++) {
 				tempTab[i] = filmTabell[i];
 			}
 			// øker antall filmer i arkivet med 1, legger inn ny film, og peker til tempTab
+			tempTab[tempTab.length-1] = nyFilm;
 			antall++;
-			tempTab[antall] = nyFilm;
 			this.filmTabell = tempTab;
 
 		}
@@ -50,7 +50,7 @@ public class Filmarkiv implements no.hvl.dat102.adt.FilmarkivADT {
 		for (int i = 0; i < filmTabell.length; i++) {
 			if (filmTabell[i].getFilmnr() == (filmnr)) {
 				funnet = true;
-				filmTabell[i] = filmTabell[antall];
+				filmTabell[i] = filmTabell[antall-1];
 				break;
 			}
 		}

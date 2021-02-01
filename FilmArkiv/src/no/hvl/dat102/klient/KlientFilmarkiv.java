@@ -35,7 +35,7 @@ public class KlientFilmarkiv {
 		
 
 		
-		filma.slettFilm(1);
+
 		
 //		System.out.println(filma.antall());
 		
