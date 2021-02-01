@@ -27,23 +27,10 @@ public class KlientFilmarkiv {
 		filma.leggTilFilm(film4);
 		
 
-		
-		for (int i = 0; i < filma.hentFilmTabell().length; i++) {
-			System.out.println(filma.hentFilmTabell()[i].toString());
-		}
-		System.out.println();
-		
-
-		
-
-		
-//		System.out.println(filma.antall());
-		
-		for (int i = 0; i < filma.hentFilmTabell().length; i++) {
-			System.out.println(filma.hentFilmTabell()[i].toString());
-		}
-		
-	
+		filma.soekTittel("iLm");
+//		for (Film film : filma.soekTittel("iLm")) {
+//			System.out.println(film);
+//		}
 
 		
 		

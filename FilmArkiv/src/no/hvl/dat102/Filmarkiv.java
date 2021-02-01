@@ -66,34 +66,44 @@ public class Filmarkiv implements no.hvl.dat102.adt.FilmarkivADT {
 
 	@Override
 	public Film[] soekTittel(String delstreng) {
-		Film[] resultat = new Film[filmTabell.length];
+		
+		//antall funnede filmer
 		int funn = 0;
-
+		
+		
+		Film[] resultatTabell = new Film[filmTabell.length];
+		
 		for (int i = 0; i < filmTabell.length; i++) {
-
-			if (filmTabell[i].getTittel().contains(delstreng)) {
-				resultat[i] = filmTabell[i];
+			if (filmTabell[i].getTittel().toUpperCase().contains(delstreng.toUpperCase())) {
+				resultatTabell[funn] = filmTabell[i];
 				funn++;
 			}
-
 		}
-		resultat = trimTab(resultat, funn);
-		if (funn == 0) {
-			System.out.println("Her var det tomt gitt");
-		}
-		return resultat;
+		return trimTab(resultatTabell, funn);
+		
+		
+		
 	}
 
 	@Override
 	public Film[] soekProdusent(String delstreng) {
-		Film[] resultat = new Film[filmTabell.length];
+		
+		//antall funnede filmer
+		int funn = 0;
+		
+		
+		Film[] resultatTabell = new Film[filmTabell.length];
+		
 		for (int i = 0; i < filmTabell.length; i++) {
-
-			if (filmTabell[i].getProdusent().contains(delstreng)) {
-				resultat[i] = filmTabell[i];
+			if (filmTabell[i].getProdusent().toUpperCase().contains(delstreng.toUpperCase())) {
+				resultatTabell[funn] = filmTabell[i];
+				funn++;
 			}
 		}
-		return resultat;
+		return trimTab(resultatTabell, funn);
+		
+		
+		
 	}
 
 	@Override
