@@ -9,7 +9,7 @@ public class Film  {
 	private Sjanger sjanger;
 	private String filmselskap;
 	
-	// test
+
 	public Film() {
 	}
 
