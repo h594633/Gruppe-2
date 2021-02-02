@@ -26,7 +26,8 @@ public class Filmarkiv implements no.hvl.dat102.adt.FilmarkivADT {
 			// ser etter film med identisk nr først
 			for (int i = 0; i < filmTabell.length; i++) {
 				if (filmTabell[i].getFilmnr() == nyFilm.getFilmnr()) {
-					// mangler handling
+					System.out.println("filmNr i bruk");
+					return;
 				}
 			}
 
@@ -55,7 +56,7 @@ public class Filmarkiv implements no.hvl.dat102.adt.FilmarkivADT {
 			}
 		}
 
-		if (funnet == true) {
+		if (funnet) {
 			antall--;
 			this.filmTabell = trimTab(filmTabell, antall);
 		}

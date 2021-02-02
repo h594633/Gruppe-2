@@ -13,7 +13,7 @@ public enum Sjanger {
 
 		}
 		System.out.println("Sjanger ikke funnet");
-		return sjang;
+		return null;
 
 	}// Met
 
