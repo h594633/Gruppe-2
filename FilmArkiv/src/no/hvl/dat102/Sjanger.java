@@ -1,7 +1,7 @@
 package no.hvl.dat102;
 
 public enum Sjanger {
-	DRAMA, ACTION, DOKUMENTAR, SCIFI, HISTORIE, WESTERN, NORSK, KOMEDIE, ROMANTISK;
+	DRAMA, ACTION, DOKUMENTAR, SCIFI, NORSK, KOMEDIE, ;
 
 	public static Sjanger getSjanger(String sjInput) {
 		Sjanger sjang = null;

@@ -54,7 +54,7 @@ public interface FilmarkivADT {
 	
 	/**
 	 * 
-	 * @return antall filmer som er ført inn i film-tabbellen
+	 * @return antall filmer som er fort inn i film-tabbellen
 	 */
     int antall();
 }
