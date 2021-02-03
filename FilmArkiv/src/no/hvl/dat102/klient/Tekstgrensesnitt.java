@@ -9,15 +9,15 @@ import java.util.Scanner;
 public class Tekstgrensesnitt {
     // lese opplysningene om en FILM fra tastatur
     public Film lesFilm(){
-        int filmnr = scanInt("filmnr");
-        String produsent = scanString("produsent");
-        String tittel = scanString("tittel");
-        int aar = scanInt("år");
-        Sjanger sjang = scanSjanger("sjanger");
-        String filmselskap = scanString("filmselskap");
+        int filmnr = scanInt("Filmnr");
+        String produsent = scanString("Produsent");
+        String tittel = scanString("Tittel");
+        int aar = scanInt("År");
+//        Sjanger sjang = scanSjanger("sjanger");
+        String sjanger = scanString("Sjanger");
+        String filmselskap = scanString("Filmselskap");
 
-        Film film = new Film (filmnr, produsent, tittel, aar, sjang, filmselskap);
-
+        return new Film (filmnr, produsent, tittel, aar, sjanger, filmselskap);
     }
     // vise en film med alle opplysninger på skjerm (husk tekst for sjanger)
     public void visFilm(Film film){
@@ -102,7 +102,7 @@ public class Tekstgrensesnitt {
         while(!godkjent) {
             try {
                 Scanner in = new Scanner(System.in);
-                System.out.println("legg inn " + input);
+                System.out.println("legg inn " + input + "... ");
 
 
                 integer = in.nextInt();
@@ -124,6 +124,7 @@ public class Tekstgrensesnitt {
         while(!godkjent) {
             try {
                 Scanner in = new Scanner(System.in);
+                System.out.println("legg inn " + input + "... ");
 
 
                 outputStr = in.nextLine();
