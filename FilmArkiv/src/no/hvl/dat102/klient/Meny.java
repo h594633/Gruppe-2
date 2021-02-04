@@ -49,6 +49,8 @@ public class Meny {
                     break;
                 default:
                     System.out.println("Feil i input");
+                    System.out.println("Prøv på nytt");
+                    input = scan.nextLine().toUpperCase();
                     break;
 
             }
@@ -61,7 +63,7 @@ public class Meny {
         System.out.println("W for å skrive arkiv til fil");
         System.out.println("Q for å avslutte programmet");
 
-        input = scan.nextLine();
+        input = scan.nextLine().toUpperCase();
 
         String slett, delstreng, size, navnF, eNavn, fStudio, fProdusent, fSjanger;
         int aar, filmnr;
