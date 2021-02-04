@@ -2,10 +2,8 @@ package no.hvl.dat102.klient;
 
 
 import no.hvl.dat102.Film;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.Scanner;
 
 import no.hvl.dat102.adt.FilmarkivADT;
@@ -14,9 +12,9 @@ public class Fil {
 
 
 
-	public static void lesFraFil(String[] args) {
+	public void lesFraFil(String filmfil) {
 
-	final String SKILLE = "#";
+	final String SEPARATOR = "#";
 	final String FILM_FIL = "film.txt";
 
 
@@ -45,7 +43,7 @@ public class Fil {
 			// 4 - Les postene, en hel post om gangen
 			String post = innfil.readLine();
 			for (int i = 0; i < n; i++) {
-				String[] felt = post.split(SKILLE);
+				String[] felt = post.split(SEPARATOR);
 				// http://docs.oracle.com/javase/8/docs/api/java/lang/String.html#split(java.lang.String, int)
 
 				int filmnr 			= Integer.parseInt(felt[0]);
@@ -71,10 +69,53 @@ public class Fil {
 	}
 
 	// Lagre et Filmarkiv til tekstfil
-	 public static void skrivTilFil(FilmarkivADT filmarkiv, String filnav){
+	 public static void skrivTilFil(FilmarkivADT filmarkiv, String filnavn){
 
 		Scanner input = new Scanner(System.in);
 		 System.out.println("");
+
+
+		 final String SEPARATOR = "#";                // parameter når vi lager metode
+//		 final String filnavn = filnavn;  parameter når vi lager metode (redundant)
+
+//		 Ansatt anne = new Ansatt("Anne", "Dahl", 220, Ansatt.KVINNE);
+//		 Ansatt knut = new Ansatt("Knut", "Olsen", 180, Ansatt.MANN);
+//		 int antall = 2;
+
+//		 antall, film[]
+
+		 try {
+			 // 1 - FileWriter
+			 FileWriter ansFil = new FileWriter(filnavn, false);
+
+			 // 2 - PrintWriter
+			 PrintWriter utfil = new PrintWriter(filnavn);
+
+			 //3 - Skriver først ut antall ansatt-info-er på den første linjen
+			 utfil.println(antall);
+
+			 // Hvis vi tar imot en tabell av ansatte, ville vi her lage en løkke der
+			 // vi for hver ansatt henter ut feltvariable og skriver de ut på samme linje
+
+			 // 3 - Skriv postene, felt for felt
+			 utfil.print(anne.getFornavn()); utfil.print(SEPARATOR);
+			 utfil.print(anne.getEtternavn()); utfil.print(SEPARATOR);
+			 utfil.print(anne.getTimeloenn()); utfil.print(SEPARATOR);
+			 utfil.print(anne.isKjoenn()); utfil.println();
+
+			 utfil.print(knut.getFornavn()); utfil.print(SEPARATOR);
+			 utfil.print(knut.getEtternavn()); utfil.print(SEPARATOR);
+			 utfil.print(knut.getTimeloenn()); utfil.print(SEPARATOR);
+			 utfil.print(knut.isKjoenn()); utfil.println();
+
+			 // 4 - Lukk filen
+			 utfil.close();
+
+		 } catch (IOException e) {
+			 System.out.println("Feil ved skriving til fil : " + e);
+			 System.exit(3);
+		 }
+	 }
 
 
 
