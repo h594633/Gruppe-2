@@ -128,8 +128,22 @@ public class Tekstgrensesnitt {
 
 
                 outputStr = in.nextLine();
-                godkjent = true;
-            } catch(Exception e) {
+
+                // hvis sjangerinput ikke er riktig throw new exception ("ikke gyldig sjanger")
+                if (input.equals("Sjanger")) {
+                    for (Sjanger sj : Sjanger.values()) {
+                        if (!sj.toString().equals(outputStr.toUpperCase())) {
+                            throw new IllegalArgumentException("\"" + outputStr + "\" er ikke en gyldig sjanger");
+                        }
+                    }
+                }
+
+
+
+
+
+                    godkjent = true;
+                } catch(Exception e) {
                 System.out.println("ikke godkjent input.");
             }
         }
