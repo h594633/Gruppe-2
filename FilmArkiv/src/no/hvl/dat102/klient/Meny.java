@@ -25,7 +25,7 @@ public class Meny {
         System.out.println("Søke i eksisterende arkiv, tast E");
         boolean run1 = true;
         Scanner scan = new Scanner(System.in);
-        String input = scan.nextLine();
+        String input = scan.nextLine().toUpperCase();
 
         String fNavn, antallNy;
 
@@ -129,7 +129,7 @@ public class Meny {
                     System.out.println("Feil i input");
             }
             System.out.println("******");
-            input = scan.nextLine();
+//            input = scan.nextLine();
 
         }
 
