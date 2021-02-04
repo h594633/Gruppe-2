@@ -12,7 +12,7 @@ public class Fil {
 
 
 
-	public void lesFraFil(String filmfil) {
+	public static void lesFraFil(String filmfil) {
 
 	final String SEPARATOR = "#";
 	final String FILM_FIL = "film.txt";
@@ -92,21 +92,21 @@ public class Fil {
 			 PrintWriter utfil = new PrintWriter(filnavn);
 
 			 //3 - Skriver først ut antall ansatt-info-er på den første linjen
-			 utfil.println(antall);
-
-			 // Hvis vi tar imot en tabell av ansatte, ville vi her lage en løkke der
-			 // vi for hver ansatt henter ut feltvariable og skriver de ut på samme linje
-
-			 // 3 - Skriv postene, felt for felt
-			 utfil.print(anne.getFornavn()); utfil.print(SEPARATOR);
-			 utfil.print(anne.getEtternavn()); utfil.print(SEPARATOR);
-			 utfil.print(anne.getTimeloenn()); utfil.print(SEPARATOR);
-			 utfil.print(anne.isKjoenn()); utfil.println();
-
-			 utfil.print(knut.getFornavn()); utfil.print(SEPARATOR);
-			 utfil.print(knut.getEtternavn()); utfil.print(SEPARATOR);
-			 utfil.print(knut.getTimeloenn()); utfil.print(SEPARATOR);
-			 utfil.print(knut.isKjoenn()); utfil.println();
+//			 utfil.println(antall);
+//
+//			 // Hvis vi tar imot en tabell av ansatte, ville vi her lage en løkke der
+//			 // vi for hver ansatt henter ut feltvariable og skriver de ut på samme linje
+//
+//			 // 3 - Skriv postene, felt for felt
+//			 utfil.print(anne.getFornavn()); utfil.print(SEPARATOR);
+//			 utfil.print(anne.getEtternavn()); utfil.print(SEPARATOR);
+//			 utfil.print(anne.getTimeloenn()); utfil.print(SEPARATOR);
+//			 utfil.print(anne.isKjoenn()); utfil.println();
+//
+//			 utfil.print(knut.getFornavn()); utfil.print(SEPARATOR);
+//			 utfil.print(knut.getEtternavn()); utfil.print(SEPARATOR);
+//			 utfil.print(knut.getTimeloenn()); utfil.print(SEPARATOR);
+//			 utfil.print(knut.isKjoenn()); utfil.println();
 
 			 // 4 - Lukk filen
 			 utfil.close();
@@ -120,4 +120,4 @@ public class Fil {
 
 
 	 }
-}
+

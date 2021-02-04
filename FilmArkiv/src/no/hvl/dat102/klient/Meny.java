@@ -44,7 +44,7 @@ public class Meny {
                 case "E":
                     System.out.println("Navn på eksisterende arkiv");
                     fNavn = scan.nextLine();
-                    Fil.lesFraFil(filma, fNavn);
+                    Fil.lesFraFil(fNavn);
                     run1 = false;
                     break;
                 default:
@@ -87,7 +87,7 @@ public class Meny {
                     System.out.println("Sjanger");
                     fSjanger = scan.nextLine();
 
-                    Film f = new Film(filmnr,fProdusent, eNavn, aar, Sjanger.valueOf(fSjanger), fStudio);
+                    Film f = new Film(filmnr,fProdusent, eNavn, aar, fSjanger, fStudio);
                     filma.leggTilFilm(f);
                     System.out.println(eNavn + " legt til med filmnummer " + filmnr);
                     break;
@@ -105,12 +105,12 @@ public class Meny {
                 case "F":
                     System.out.println("Skriv inn tittel");
                     delstreng = scan.nextLine();
-                    tekstgr.skrivUtFilmDelstrengITittel(delstreng);
+                    tekstgr.skrivUtFilmDelstrengITittel(filma, delstreng);
                     break;
                 case "P":
                     System.out.println("Skriv inn produsent");
                     delstreng = scan.nextLine();
-                    tekstgr.skrivUtFilmProdusent(delstreng);
+                    tekstgr.skrivUtFilmProdusent(filma, delstreng);
                     break;
                 case "T":
                     tekstgr.skrivUtStatistikk(filma);
@@ -135,6 +135,7 @@ public class Meny {
 
         scan.close();
         System.out.println("");
+
     }
 
 }
