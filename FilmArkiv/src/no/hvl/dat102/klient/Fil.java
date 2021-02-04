@@ -1,8 +1,6 @@
 package no.hvl.dat102.klient;
 
 
-import no.hvl.dat102.Film;
-
 import java.io.*;
 import java.util.Scanner;
 
@@ -53,7 +51,7 @@ public class Fil {
 				String sjanger		= felt[4];
 				String filmselskap	= felt[5];
 
-				Film f = new Film(filmnr, produsent, tittel, aar, sjanger, filmselskap);
+				String f = ("Filmnr: " + filmnr + " Produsent: " + produsent + " Tittel: " + tittel + " År: " + aar + " Sjanger: " + sjanger + " Filmselskap: " + filmselskap);
 				System.out.println(f);
 
 				post = innfil.readLine();
