@@ -19,10 +19,7 @@ public class Meny {
     }
     public void start(){
 
-        System.out.println("Meny");
-        System.out.println("************");
-        System.out.println("Opprette nytt arkiv: N");
-        System.out.println("Se etter arkiv: E");
+        System.out.println("Meny\n************\nOpprette nytt arkiv: N\nSe etter arkiv: E");
         boolean run1 = true;
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine().toUpperCase();
@@ -44,8 +41,8 @@ public class Meny {
                 case "E":
                     System.out.println("Oppgi eksisterende arkiv:");
                     fNavn = scan.nextLine();
-                    Fil.lesFraFil(fNavn);
-                    run1 = false;
+                        if (Fil.lesFraFil(fNavn)) run1 = false;
+
                     break;
                 default:
                     System.out.println("Feil i input");

@@ -10,7 +10,7 @@ public class Fil {
 
 
 
-	public static void lesFraFil(String filmfil) {
+	public static boolean lesFraFil(String filmfil) {
 
 	final String SEPARATOR = "#";
 	final String FILM_FIL = filmfil;
@@ -24,7 +24,8 @@ public class Fil {
 			filmFil = new FileReader(FILM_FIL);
 		}catch(FileNotFoundException unntak){
 			System.out.println("Finner ikke filen " + FILM_FIL);
-			System.exit(1);
+//			System.exit(1);
+			return false;
 			// Vi kan lage script som kjører programmet fra kommandolinjen
 			// og fanger opp returkoden ved System.exit
 			//
@@ -64,6 +65,8 @@ public class Fil {
 			System.out.println("Feil ved lesing av fil: " + e);
 			System.exit(2);
 		}
+
+		return true;
 	}
 
 	// Lagre et Filmarkiv til tekstfil
