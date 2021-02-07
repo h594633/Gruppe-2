@@ -13,7 +13,7 @@ public class Fil {
 	public static void lesFraFil(String filmfil) {
 
 	final String SEPARATOR = "#";
-	final String FILM_FIL = "film.txt";
+	final String FILM_FIL = filmfil;
 
 
 		FileReader filmFil = null;
@@ -51,7 +51,7 @@ public class Fil {
 				String sjanger		= felt[4];
 				String filmselskap	= felt[5];
 
-				String f = ("Filmnr: " + filmnr + " Produsent: " + produsent + " Tittel: " + tittel + " År: " + aar + " Sjanger: " + sjanger + " Filmselskap: " + filmselskap);
+				String f = ("Filmnr: " + filmnr + "\n Produsent: " + produsent + "\n Tittel: " + tittel + "\n Aar: " + aar + "\n Sjanger: " + sjanger + "\n Filmselskap: " + filmselskap + "\n\n");
 				System.out.println(f);
 
 				post = innfil.readLine();
