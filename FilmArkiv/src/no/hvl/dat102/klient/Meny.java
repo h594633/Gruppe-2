@@ -19,10 +19,7 @@ public class Meny {
     }
     public void start(){
 
-        System.out.println("Meny");
-        System.out.println("************");
-        System.out.println("Opprette nytt arkiv, tast N");
-        System.out.println("Søke i eksisterende arkiv, tast E");
+        System.out.println("Meny\n************\nOpprette nytt arkiv: N\nSe etter arkiv: E");
         boolean run1 = true;
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine().toUpperCase();
@@ -32,36 +29,42 @@ public class Meny {
         while (run1) {
             switch (input){
                 case "N":
-                    System.out.println("Antall filmer i nytt arkiv?");
-                    antallNy = scan.nextLine();
-                    int antall = Integer.parseInt(antallNy);
-                    Film[] nyFilm = new Film[antall];
-
+                    Film[] nyFilm = new Film[filma.antall()];
                     filma = new Filmarkiv(nyFilm);
-
                     run1 = false;
                     break;
                 case "E":
-                    System.out.println("Navn på eksisterende arkiv");
+                    System.out.println("Oppgi eksisterende arkiv:");
                     fNavn = scan.nextLine();
-                    Fil.lesFraFil(fNavn);
-                    run1 = false;
+                        if (Fil.lesFraFil(fNavn)) run1 = false;
+
                     break;
                 default:
                     System.out.println("Feil i input");
-                    System.out.println("Prøv på nytt");
+                    System.out.println("Ny input");
                     input = scan.nextLine().toUpperCase();
                     break;
 
             }
         }
-        System.out.println("L for å legge inn film");
-        System.out.println("S for å slette");
-        System.out.println("F for å søke og hente filmer med en gitt delstreng av tittel");
-        System.out.println("P for å søke å hente filmer med en gitt delstreng av produsent");
-        System.out.println("T for å skrive ut statistikk av arkiv");
-        System.out.println("W for å skrive arkiv til fil");
-        System.out.println("Q for å avslutte programmet");
+        /*
+        System.out.println("L for innlegg av film\n");
+        System.out.println("S for sleeting\n");
+        System.out.println("F for  henting av film, gitt tittel\n");
+        System.out.println("P for  henting av film, gitt produsent\n");
+        System.out.println("T for arkiv statistikk\n");
+        System.out.println("W for lagring\n");
+        System.out.println("Q for QUIT");
+        */
+        String run2meny = "L for innlegg av film\n" +
+                "S for sleeting\n" +
+                "F for  henting av film, gitt tittel\n" +
+                "P for  henting av film, gitt produsent\n" +
+                "T for arkiv statistikk\n" +
+                "W for lagring\n" +
+                "Q for QUIT";
+
+        System.out.println(run2meny);
 
         input = scan.nextLine().toUpperCase();
 
@@ -70,17 +73,19 @@ public class Meny {
         boolean run2 = true;
 
         while (run2) {
+
+
             System.out.println(" ");
             switch (input) {
                 case "L":
-                    filmnr = filma.antall();
+                    filmnr = filma.antall()+1;
                     System.out.println("Skriv inn tittel");
                     eNavn = scan.nextLine();
 
                     System.out.println("Produsent");
                     fProdusent = scan.nextLine();
 
-                    System.out.println("År");
+                    System.out.println("Aar");
                     aar = Integer.parseInt(scan.nextLine());
 
                     System.out.println("Filmstudio");
@@ -91,11 +96,12 @@ public class Meny {
 
                     Film f = new Film(filmnr,fProdusent, eNavn, aar, fSjanger, fStudio);
                     filma.leggTilFilm(f);
-                    System.out.println(eNavn + " legt til med filmnummer " + filmnr);
+                    System.out.println(eNavn + " lagt til med film-nr: " + filmnr);
+
                     break;
 
                 case "S":
-                    System.out.println("Skriv inn filmnummer du ønsker å slette");
+                    System.out.println("Skriv inn filmnummer for film som skal slettes");
                     slett = scan.nextLine();
                     int fnr = Integer.parseInt(slett);
                     if(filma.slettFilm(fnr)) {
@@ -118,7 +124,7 @@ public class Meny {
                     tekstgr.skrivUtStatistikk(filma);
                     break;
                 case "W":
-                    System.out.println("Navn på fil");
+                    System.out.println("filnavn for lagring...");
                     navnF = scan.nextLine();
                     Fil.skrivTilFil(filma, navnF);
                     System.out.println(navnF + " er opprettet");
@@ -131,7 +137,7 @@ public class Meny {
                     System.out.println("Feil i input");
             }
             System.out.println("******");
-//            input = scan.nextLine();
+            input = scan.nextLine();
 
         }
 

@@ -18,6 +18,8 @@ public class Filmarkiv implements no.hvl.dat102.adt.FilmarkivADT {
 	@Override
 	public void leggTilFilm(Film nyFilm) {
 
+/*
+		// sjekker om tabell er tom
 		if (filmTabell == null) {
 			this.filmTabell = new Film[1];
 			this.filmTabell[0] = nyFilm;
@@ -42,6 +44,41 @@ public class Filmarkiv implements no.hvl.dat102.adt.FilmarkivADT {
 			this.filmTabell = tempTab;
 
 		}
+NY ITERASJON
+*/
+
+		if (filmTabell != null) {
+			// ser etter film med identisk nr først
+			for (int i = 0; i < filmTabell.length; i++) {
+				if (filmTabell[i].getFilmnr() == nyFilm.getFilmnr()) {
+					System.out.println("filmNr i bruk");
+					return;
+				}
+			}//filmnr søk
+
+			// kopierer over filmer fra gammel tabell til tempTab
+			Film[] tempTab = new Film[filmTabell.length + 1];
+			for (int i = 0; i < filmTabell.length; i++) {
+				tempTab[i] = filmTabell[i];
+			}
+			// øker antall filmer i arkivet med 1, legger inn ny film, og peker til tempTab
+			tempTab[tempTab.length-1] = nyFilm;
+			antall++;
+			this.filmTabell = tempTab;
+		}//ikke tom tabell
+
+		// for tomt arkiv:
+		else {
+			this.filmTabell = new Film[1];
+			this.filmTabell[0] = nyFilm;
+			antall++;
+		}
+
+
+
+
+
+
 	}
 
 	@Override
