@@ -4,15 +4,16 @@ package no.hvl.dat102.klient;
 import java.io.*;
 import java.util.Scanner;
 
+import no.hvl.dat102.Film;
 import no.hvl.dat102.adt.FilmarkivADT;
 
 public class Fil {
 
-	public static boolean lesFraFil(String filmfil) {
+
+	public static boolean lesFraFil(String filmfil, FilmarkivADT filma) {
 
 	final String SEPARATOR = "#";
 	final String FILM_FIL = filmfil;
-
 
 		FileReader filmFil = null;
 		BufferedReader innfil = null;
@@ -21,7 +22,6 @@ public class Fil {
 			filmFil = new FileReader(FILM_FIL);
 		}catch(FileNotFoundException unntak){
 			System.out.println("Finner ikke filen " + FILM_FIL);
-//			System.exit(1);
 			return false;
 
 		}
@@ -47,8 +47,9 @@ public class Fil {
 				String sjanger		= felt[4];
 				String filmselskap	= felt[5];
 
-				String f = ("Filmnr: " + filmnr + "\n Produsent: " + produsent + "\n Tittel: " + tittel + "\n Aar: " + aar + "\n Sjanger: " + sjanger + "\n Filmselskap: " + filmselskap + "\n\n");
-				System.out.println(f);
+				Film nyFilm = new Film (filmnr,produsent,tittel,aar,sjanger,filmselskap);
+				filma.leggTilFilm(nyFilm);
+				System.out.println(nyFilm.toString());
 
 				post = innfil.readLine();
 			}
@@ -80,6 +81,7 @@ public class Fil {
 			 PrintWriter utfil = new PrintWriter(filnavn);
 
 			 utfil.close();
+			 ansFil.close();
 
 		 } catch (IOException e) {
 			 System.out.println("Feil ved skriving til fil : " + e);

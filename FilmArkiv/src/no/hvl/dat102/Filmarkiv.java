@@ -117,6 +117,7 @@ NY ITERASJON
 				funn++;
 			}
 		}
+		if (funn == 0) {return null;}
 		return trimTab(resultatTabell, funn);
 		
 		
@@ -138,6 +139,7 @@ NY ITERASJON
 				funn++;
 			}
 		}
+		if (funn == 0) {return null;}
 		return trimTab(resultatTabell, funn);
 		
 		

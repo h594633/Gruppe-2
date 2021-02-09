@@ -2,8 +2,8 @@ package no.hvl.dat102.klient;
 
 import no.hvl.dat102.Film;
 import no.hvl.dat102.Filmarkiv;
-import no.hvl.dat102.Sjanger;
 import no.hvl.dat102.adt.FilmarkivADT;
+import no.hvl.dat102.klient.Tekstgrensesnitt;
 
 import java.util.Scanner;
 
@@ -36,7 +36,7 @@ public class Meny {
                 case "E":
                     System.out.println("Oppgi eksisterende arkiv:");
                     fNavn = scan.nextLine();
-                        if (Fil.lesFraFil(fNavn)) run1 = false;
+                        if (Fil.lesFraFil(fNavn, filma)) run1 = false;
 
                     break;
                 default:
@@ -47,15 +47,6 @@ public class Meny {
 
             }
         }
-        /*
-        System.out.println("L for innlegg av film\n");
-        System.out.println("S for sleeting\n");
-        System.out.println("F for  henting av film, gitt tittel\n");
-        System.out.println("P for  henting av film, gitt produsent\n");
-        System.out.println("T for arkiv statistikk\n");
-        System.out.println("W for lagring\n");
-        System.out.println("Q for QUIT");
-        */
         String run2meny = "L for innlegg av film\n" +
                 "S for sleeting\n" +
                 "F for  henting av film, gitt tittel\n" +
@@ -78,28 +69,9 @@ public class Meny {
             System.out.println(" ");
             switch (input) {
                 case "L":
-                    filmnr = filma.antall()+1;
-                    System.out.println("Skriv inn tittel");
-                    eNavn = scan.nextLine();
-
-                    System.out.println("Produsent");
-                    fProdusent = scan.nextLine();
-
-                    System.out.println("Aar");
-                    aar = Integer.parseInt(scan.nextLine());
-
-                    System.out.println("Filmstudio");
-                    fStudio = scan.nextLine();
-
-                    System.out.println("Sjanger");
-                    fSjanger = scan.nextLine();
-
-                    Film f = new Film(filmnr,fProdusent, eNavn, aar, fSjanger, fStudio);
-                    filma.leggTilFilm(f);
-                    System.out.println(eNavn + " lagt til med film-nr: " + filmnr);
-
+                    filma.leggTilFilm(tekstgr.lesFilm());
+                    System.out.println("Ny film: \n" + filma.hentFilmTabell()[filma.antall()-1] + "\n");
                     break;
-
                 case "S":
                     System.out.println("Skriv inn filmnummer for film som skal slettes");
                     slett = scan.nextLine();
@@ -137,7 +109,7 @@ public class Meny {
                     System.out.println("Feil i input");
             }
             System.out.println("******");
-            input = scan.nextLine();
+            input = scan.nextLine().toUpperCase();
 
         }
 
