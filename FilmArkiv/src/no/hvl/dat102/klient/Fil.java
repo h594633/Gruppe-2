@@ -68,17 +68,32 @@ public class Fil {
 
 	 public static void skrivTilFil(FilmarkivADT filmarkiv, String filnavn){
 
-		Scanner input = new Scanner(System.in);
-		 System.out.println("");
-
+		/*Scanner input = new Scanner(System.in);
+		 System.out.println("");*/
+		 try {
+		 FileWriter ansFil = new FileWriter(filnavn, false);
+		 PrintWriter utfil = new PrintWriter(ansFil);
 
 		 final String SEPARATOR = "#";                // parameter når vi lager metode
-		 try {
-			 // 1 - FileWriter
-			 FileWriter ansFil = new FileWriter(filnavn, false);
 
-			 // 2 - PrintWriter
-			 PrintWriter utfil = new PrintWriter(filnavn);
+			 // 1 - FileWriter
+
+			 Film[] f = filmarkiv.hentFilmTabell();
+			 utfil.println(filmarkiv.antall());
+			 for (int i = 0; i < filmarkiv.antall(); i++){
+				 utfil.print(f[i].getFilmnr());
+				 utfil.print(SEPARATOR);
+				 utfil.print(f[i].getProdusent());
+				 utfil.print(SEPARATOR);
+				 utfil.print(f[i].getTittel());
+				 utfil.print(SEPARATOR);
+				 utfil.print(f[i].getAar());
+				 utfil.print(SEPARATOR);
+				 utfil.print(f[i].getSjanger());
+				 utfil.print(SEPARATOR);
+				 utfil.println(f[i].getFilmselskap());
+			 }
+
 
 			 utfil.close();
 			 ansFil.close();

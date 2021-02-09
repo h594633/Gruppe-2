@@ -55,5 +55,7 @@ public class Film  {
 	public Sjanger getSjanger() {
 		return sjanger;
 	}
+	public int getAar() { return  aar; }
+	public String getFilmselskap() {return filmselskap; }
 
 }
