@@ -148,12 +148,13 @@ NY ITERASJON
 
 	@Override
 	public int antall(Sjanger sjanger) {
+		int sjangerantall = 0;
 		for (int i = 0; i < filmTabell.length; i++) {
 			if (sjanger == filmTabell[i].getSjanger()) {
-
+			sjangerantall++;
 			}
 		}
-		return antall;
+		return sjangerantall;
 	}
 
 	@Override
