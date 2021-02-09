@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Tekstgrensesnitt {
     // lese opplysningene om en FILM fra tastatur
-    public Film lesFilm(){
+    public Film lesFilm() {
         int filmnr = scanInt("Filmnr");
         String produsent = scanString("Produsent");
         String tittel = scanString("Tittel");
@@ -16,47 +16,49 @@ public class Tekstgrensesnitt {
 //        Sjanger sjang = scanSjanger("sjanger");
         String sjanger = scanString("Sjanger");
         String filmselskap = scanString("Filmselskap");
-        return new Film (filmnr, produsent, tittel, aar, sjanger, filmselskap);
+        return new Film(filmnr, produsent, tittel, aar, sjanger, filmselskap);
     }
+
     // vise en film med alle opplysninger på skjerm (husk tekst for sjanger)
-    public void visFilm(Film film){
+    public void visFilm(Film film) {
 
         System.out.println(film.toString());
     }
+
     // Skrive ut alle Filmer med en spesiell delstreng i tittelen
-    public void skrivUtFilmDelstrengITittel(FilmarkivADT filma, String delstreng){
+    public void skrivUtFilmDelstrengITittel(FilmarkivADT filma, String delstreng) {
 
 
         Film[] tempTab = filma.soekTittel(delstreng);
         try {
-            for (Film f:tempTab) {
+            for (Film f : tempTab) {
                 System.out.println(f.toString());
             }
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             System.out.println("ingen resultater for \"" + delstreng + "\"");
         }
 
 
     }
+
     // Skriver ut alle Filmer av en produsent / en gruppe
     public void skrivUtFilmProdusent(FilmarkivADT filma, String delstreng) {
 
 
         Film[] tempTab = filma.soekProdusent(delstreng);
         try {
-            for (Film f:tempTab) {
+            for (Film f : tempTab) {
                 System.out.println(f.toString());
             }
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             System.out.println("ingen resultater for \"" + delstreng + "\"");
         }
 
     }
+
     // Skrive ut en enkel statistikk som inneholder antall Filmer totalt
 // og hvor mange det er i hver sjanger
-    public void skrivUtStatistikk(FilmarkivADT filma){
+    public void skrivUtStatistikk(FilmarkivADT filma) {
 
         int i = 0;
 
@@ -66,7 +68,6 @@ public class Tekstgrensesnitt {
         int scifi = 0;
         int norsk = 0;
         int komedie = 0;
-
 
 
         while (filma.hentFilmTabell().length > i) {
@@ -97,10 +98,10 @@ public class Tekstgrensesnitt {
                     i++;
                 }
             }
-    }
+        }
 
-        System.out.println("Antall filmer: " + filma.antall() + "\nDrama "+ drama + "\naction "+ action + "\ndokumentar "+ dokumentar + "\nSciFi "+ scifi +
-                "\nnorsk "+ norsk + "\nkomedie "+ komedie);
+        System.out.println("Antall filmer: " + filma.antall() + "\nDrama " + drama + "\naction " + action + "\ndokumentar " + dokumentar + "\nSciFi " + scifi +
+                "\nnorsk " + norsk + "\nkomedie " + komedie);
 
 
     }
@@ -112,7 +113,7 @@ public class Tekstgrensesnitt {
 
         int integer = 0;
 
-        while(!godkjent) {
+        while (!godkjent) {
             try {
                 Scanner in = new Scanner(System.in);
                 System.out.println("legg inn " + input + "... ");
@@ -120,7 +121,7 @@ public class Tekstgrensesnitt {
 
                 integer = in.nextInt();
                 godkjent = true;
-            } catch(Exception e) {
+            } catch (Exception e) {
                 System.out.println("ikke godkjent input.");
             }
         }
@@ -134,7 +135,7 @@ public class Tekstgrensesnitt {
 
         String outputStr = "";
 
-        while(!godkjent) {
+        while (!godkjent) {
             try {
                 Scanner in = new Scanner(System.in);
                 System.out.println("legg inn " + input + "... ");
@@ -147,20 +148,17 @@ public class Tekstgrensesnitt {
 
                     for (Sjanger sj : Sjanger.values()) {
                         if (sj.toString().equals(outputStr.toUpperCase())) {
-                        return outputStr;
+                            return outputStr;
                         }
 
 
-
-                    }throw new IllegalArgumentException("\"" + outputStr + "\" er ikke en gyldig sjanger\n" + "velg blant: " + Sjanger.values().toString());
+                    }
+                    throw new IllegalArgumentException("\"" + outputStr + "\" er ikke en gyldig sjanger\n" + "velg blant: " + Sjanger.values().toString());
                 }
 
 
-
-
-
-                    godkjent = true;
-                } catch(Exception e) {
+                godkjent = true;
+            } catch (Exception e) {
                 System.out.println("ikke godkjent input.");
             }
         }

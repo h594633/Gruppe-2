@@ -6,14 +6,14 @@ import no.hvl.dat102.adt.FilmarkivADT;
 public class KlientFilmarkiv {
 
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		FilmarkivADT filma = new Filmarkiv(null);
+        FilmarkivADT filma = new Filmarkiv(null);
 
-		Meny meny = new Meny(filma);
-		meny.start();
+        Meny meny = new Meny(filma);
+        meny.start();
 
-	}
+    }
 
 
 }

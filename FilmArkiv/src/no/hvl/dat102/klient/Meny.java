@@ -3,7 +3,6 @@ package no.hvl.dat102.klient;
 import no.hvl.dat102.Film;
 import no.hvl.dat102.Filmarkiv;
 import no.hvl.dat102.adt.FilmarkivADT;
-import no.hvl.dat102.klient.Tekstgrensesnitt;
 
 import java.util.Scanner;
 
@@ -13,11 +12,12 @@ public class Meny {
     private Tekstgrensesnitt tekstgr;
     private FilmarkivADT filma;
 
-    public Meny(FilmarkivADT filma){
+    public Meny(FilmarkivADT filma) {
         tekstgr = new Tekstgrensesnitt();
         this.filma = filma;
     }
-    public void start(){
+
+    public void start() {
 
         System.out.println("Meny\n************\nOpprette nytt arkiv: N\nSe etter arkiv: E");
         boolean run1 = true;
@@ -27,7 +27,7 @@ public class Meny {
         String fNavn, antallNy;
 
         while (run1) {
-            switch (input){
+            switch (input) {
                 case "N":
                     Film[] nyFilm = new Film[filma.antall()];
                     filma = new Filmarkiv(nyFilm);
@@ -36,7 +36,7 @@ public class Meny {
                 case "E":
                     System.out.println("Oppgi eksisterende arkiv:");
                     fNavn = scan.nextLine();
-                        if (Fil.lesFraFil(fNavn, filma)) run1 = false;
+                    if (Fil.lesFraFil(fNavn, filma)) run1 = false;
 
                     break;
                 default:
@@ -70,15 +70,15 @@ public class Meny {
             switch (input) {
                 case "L":
                     filma.leggTilFilm(tekstgr.lesFilm());
-                    System.out.println("Ny film: \n" + filma.hentFilmTabell()[filma.antall()-1] + "\n");
+                    System.out.println("Ny film: \n" + filma.hentFilmTabell()[filma.antall() - 1] + "\n");
                     break;
                 case "S":
                     System.out.println("Skriv inn filmnummer for film som skal slettes");
                     slett = scan.nextLine();
                     int fnr = Integer.parseInt(slett);
-                    if(filma.slettFilm(fnr)) {
+                    if (filma.slettFilm(fnr)) {
                         System.out.println("Filmen er slettet");
-                }   else {
+                    } else {
                         System.out.println("Fant ikke filmen");
                     }
                     break;
