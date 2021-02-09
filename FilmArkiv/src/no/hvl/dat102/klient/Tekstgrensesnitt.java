@@ -69,7 +69,7 @@ public class Tekstgrensesnitt {
 
 
 
-        while (filma.hentFilmTabell().length-1 > i) {
+        while (filma.hentFilmTabell().length > i) {
 
             switch (filma.hentFilmTabell()[i].getSjanger()) {
                 case DRAMA -> {

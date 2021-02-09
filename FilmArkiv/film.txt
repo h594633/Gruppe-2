@@ -1,4 +1,4 @@
 3
-1#Jack#Fellowship#2001#Dokumentar#NewLineCinema
-5#Arne#Ladida#2003#action#Ubisoft
-7#Osdo#Filmen2#2020#komedie#HVL
+1#Jack#Fellowship#2001#DOKUMENTAR#NewLineCinema
+5#Arne#Ladida#2003#ACTION#Ubisoft
+7#Osdo#Filmen2#2020#KOMEDIE#HVL
