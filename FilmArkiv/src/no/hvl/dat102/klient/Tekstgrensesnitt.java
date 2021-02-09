@@ -16,7 +16,6 @@ public class Tekstgrensesnitt {
 //        Sjanger sjang = scanSjanger("sjanger");
         String sjanger = scanString("Sjanger");
         String filmselskap = scanString("Filmselskap");
-
         return new Film (filmnr, produsent, tittel, aar, sjanger, filmselskap);
     }
     // vise en film med alle opplysninger på skjerm (husk tekst for sjanger)
@@ -27,8 +26,15 @@ public class Tekstgrensesnitt {
     // Skrive ut alle Filmer med en spesiell delstreng i tittelen
     public void skrivUtFilmDelstrengITittel(FilmarkivADT filma, String delstreng){
 
-        for (Film f:filma.soekTittel(delstreng)) {
-            System.out.println(f.toString());
+
+        Film[] tempTab = filma.soekTittel(delstreng);
+        try {
+            for (Film f:tempTab) {
+                System.out.println(f.toString());
+            }
+        }
+        catch (NullPointerException e) {
+            System.out.println("ingen resultater for \"" + delstreng + "\"");
         }
 
 
@@ -36,8 +42,15 @@ public class Tekstgrensesnitt {
     // Skriver ut alle Filmer av en produsent / en gruppe
     public void skrivUtFilmProdusent(FilmarkivADT filma, String delstreng) {
 
-        for (Film f:filma.soekProdusent(delstreng)) {
-            System.out.println(f.toString());
+
+        Film[] tempTab = filma.soekProdusent(delstreng);
+        try {
+            for (Film f:tempTab) {
+                System.out.println(f.toString());
+            }
+        }
+        catch (NullPointerException e) {
+            System.out.println("ingen resultater for \"" + delstreng + "\"");
         }
 
     }
@@ -56,34 +69,34 @@ public class Tekstgrensesnitt {
 
 
 
-        while (filma.hentFilmTabell().length > i) {
+        while (filma.hentFilmTabell().length-1 > i) {
 
-        switch (filma.hentFilmTabell()[i].getSjanger()) {
-            case DRAMA:
-                drama++;
-                i++;
-                break;
-            case ACTION:
-                action++;
-                i++;
-                break;
-            case DOKUMENTAR:
-                dokumentar++;
-                i++;
-                break;
-            case SCIFI:
-                scifi++;
-                i++;
-                break;
-            case NORSK:
-                norsk++;
-                i++;
-                break;
-            case KOMEDIE:
-                komedie++;
-                i++;
-                break;
-        }
+            switch (filma.hentFilmTabell()[i].getSjanger()) {
+                case DRAMA -> {
+                    drama++;
+                    i++;
+                }
+                case ACTION -> {
+                    action++;
+                    i++;
+                }
+                case DOKUMENTAR -> {
+                    dokumentar++;
+                    i++;
+                }
+                case SCIFI -> {
+                    scifi++;
+                    i++;
+                }
+                case NORSK -> {
+                    norsk++;
+                    i++;
+                }
+                case KOMEDIE -> {
+                    komedie++;
+                    i++;
+                }
+            }
     }
 
         System.out.println("Antall filmer: " + filma.antall() + "\nDrama "+ drama + "\naction "+ action + "\ndokumentar "+ dokumentar + "\nSciFi "+ scifi +
@@ -130,12 +143,16 @@ public class Tekstgrensesnitt {
                 outputStr = in.nextLine();
 
                 // hvis sjangerinput ikke er riktig throw new exception ("ikke gyldig sjanger")
-                if (input.equals("Sjanger")) {
+                while (input.equals("Sjanger")) {
+
                     for (Sjanger sj : Sjanger.values()) {
-                        if (!sj.toString().equals(outputStr.toUpperCase())) {
-                            throw new IllegalArgumentException("\"" + outputStr + "\" er ikke en gyldig sjanger");
+                        if (sj.toString().equals(outputStr.toUpperCase())) {
+                        return outputStr;
                         }
-                    }
+
+
+
+                    }throw new IllegalArgumentException("\"" + outputStr + "\" er ikke en gyldig sjanger\n" + "velg blant: " + Sjanger.values().toString());
                 }
 
 
@@ -148,35 +165,6 @@ public class Tekstgrensesnitt {
             }
         }
         return outputStr;
-    }
-    // scan sjanger
-    private Sjanger scanSjanger(String input) {
-        boolean godkjent = false;
-
-        String stringIn = "";
-        Sjanger output = null;
-
-        while(!godkjent) {
-            try {
-                Scanner in = new Scanner(System.in);
-
-
-                 stringIn = in.nextLine();
-
-                for (Sjanger sj : Sjanger.values()) {
-                    if (sj.toString().equals(stringIn.toUpperCase())) {
-                        godkjent = true;
-                        output = sj;
-
-                    }
-                }
-
-            } catch(Exception e) {
-                System.out.println("ikke godkjent input.");
-            }
-        }
-        return output;
-
     }
 
 }//class
