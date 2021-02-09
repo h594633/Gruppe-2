@@ -7,20 +7,19 @@ import no.hvl.dat102.adt.FilmarkivADT;
 import java.util.Scanner;
 
 public class Tekstgrensesnitt {
+
     // lese opplysningene om en FILM fra tastatur
     public Film lesFilm(){
         int filmnr = scanInt("Filmnr");
         String produsent = scanString("Produsent");
         String tittel = scanString("Tittel");
         int aar = scanInt("År");
-//        Sjanger sjang = scanSjanger("sjanger");
         String sjanger = scanString("Sjanger");
         String filmselskap = scanString("Filmselskap");
         return new Film (filmnr, produsent, tittel, aar, sjanger, filmselskap);
     }
     // vise en film med alle opplysninger på skjerm (husk tekst for sjanger)
     public void visFilm(Film film){
-
         System.out.println(film.toString());
     }
     // Skrive ut alle Filmer med en spesiell delstreng i tittelen
@@ -143,7 +142,7 @@ public class Tekstgrensesnitt {
                 outputStr = in.nextLine();
 
                 // hvis sjangerinput ikke er riktig throw new exception ("ikke gyldig sjanger")
-                while (input.equals("Sjanger")) {
+                if (input.equals("Sjanger")) {
 
                     for (Sjanger sj : Sjanger.values()) {
                         if (sj.toString().equals(outputStr.toUpperCase())) {
@@ -152,7 +151,7 @@ public class Tekstgrensesnitt {
 
 
 
-                    }throw new IllegalArgumentException("\"" + outputStr + "\" er ikke en gyldig sjanger\n" + "velg blant: " + Sjanger.values().toString());
+                    }throw new IllegalArgumentException("\"" + outputStr + "\" er ikke en gyldig sjanger\n");
                 }
 
 
