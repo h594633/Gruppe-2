@@ -32,7 +32,7 @@ public interface FilmarkivADT {
      * @param delstreng som del av tittel
      * @return
      */
-    Film[] soekTittel(String delstreng);
+    boolean soekTittel(String delstreng);
 
     /**
      * @param delstreng
