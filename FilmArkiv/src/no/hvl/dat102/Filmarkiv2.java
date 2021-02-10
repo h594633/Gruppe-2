@@ -10,7 +10,20 @@ public class Filmarkiv2 implements FilmarkivADT {
 
     @Override
     public Film[] hentFilmTabell() {
-        return new Film[0];
+
+        LinearNode<Film> aktuell = start;
+
+        Film[] midTab = new Film[antall];
+
+        for (int i = 0; i < antall; i++) {
+
+            midTab[i] = aktuell.getElement();
+
+            aktuell = aktuell.getNeste();
+        }
+
+
+        return midTab;
     }
 
     @Override
@@ -85,7 +98,31 @@ public class Filmarkiv2 implements FilmarkivADT {
 
     @Override
     public Film[] soekProdusent(String delstreng) {
-        return new Film[0];
+
+        LinearNode<Film> aktuell = start;
+
+        Film[] midTab = new Film[];
+
+        int funnet = 0;
+
+        for (int i = 0; i < antall; i++) {
+
+            //begynne på første node
+
+            if (aktuell.getElement().getProdusent().toUpperCase().contains(delstreng.toUpperCase())) {
+                //sjekk om delstreng matcher toString
+                //hvis desltreng matcher toString, putt element i tabell, fortsett å gå gjennom noder
+                midTab[funnet] = aktuell.getElement();
+                funnet ++;
+                //hvis finner nytt element med delstreng som matcher toString, øk antall in med +1 på midTab og putt element i tab
+                aktuell = aktuell.getNeste();
+                //repeter ^ til det ikke er flere noder.
+                //løkke over, return midTab;
+            }
+        }
+
+        return midTab;
+
     }
 
     @Override
