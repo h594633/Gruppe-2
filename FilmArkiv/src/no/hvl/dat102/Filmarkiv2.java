@@ -25,12 +25,10 @@ public class Filmarkiv2 implements FilmarkivADT {
     // hvis første element sett neste null, start = nyfilm
         LinearNode<Film>nynode = new LinearNode<>(nyFilm);
 
-        if (antall == 0) {
-            nynode = start;
-        } else {
+        if (antall != 0) {
             nynode.setNeste(start);
-            start = nynode;
         }
+        start = nynode;
         antall++;
     }
 
@@ -78,7 +76,8 @@ public class Filmarkiv2 implements FilmarkivADT {
             }
             aktuell = aktuell.getNeste();
         }
-        return returTabell;
+
+        return trimTab(returTabell, funn);
 
 
     }
@@ -97,7 +96,7 @@ public class Filmarkiv2 implements FilmarkivADT {
             }
             aktuell = aktuell.getNeste();
         }
-        return returTabell;
+        return trimTab(returTabell, funn);
     }
 
     @Override
@@ -109,6 +108,7 @@ public class Filmarkiv2 implements FilmarkivADT {
             if (aktuell.getNeste().getElement().getSjanger().equals(sjanger)) {
                 antall++;
             }
+            aktuell = aktuell.getNeste();
         }
         return antall;
     }
@@ -118,8 +118,20 @@ public class Filmarkiv2 implements FilmarkivADT {
         int antall = 0;
         LinearNode<Film>aktuell = start;
         while (aktuell.getNeste() != null) {
-
+            antall++;
+            aktuell = aktuell.getNeste();
         }
         return antall;
+    }
+
+    private Film[] trimTab(Film[] gammelTab, int antallfilmer) {
+
+        Film[] nyTab = new Film[antallfilmer];
+
+        for (int i = 0; i < nyTab.length; i++) {
+            nyTab[i] = gammelTab[i];
+
+        }
+        return nyTab;
     }
 }
