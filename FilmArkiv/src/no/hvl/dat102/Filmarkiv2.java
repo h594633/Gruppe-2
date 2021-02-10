@@ -1,7 +1,6 @@
 package no.hvl.dat102;
 
 import no.hvl.dat102.adt.FilmarkivADT;
-import no.hvl.dat102.LinearNode;
 
 public class Filmarkiv2 implements FilmarkivADT {
 
@@ -11,7 +10,14 @@ public class Filmarkiv2 implements FilmarkivADT {
 
     @Override
     public Film[] hentFilmTabell() {
-        return new Film[0];
+        Film[] returTabell = new Film[antall];
+        LinearNode<Film>aktuell = start;
+
+        for (int i = 0; i < returTabell.length; i++) {
+            returTabell[i] = aktuell.getElement();
+            aktuell = aktuell.getNeste();
+        }
+        return returTabell;
     }
 
     @Override
@@ -19,40 +25,40 @@ public class Filmarkiv2 implements FilmarkivADT {
     // hvis første element sett neste null, start = nyfilm
         LinearNode<Film>nynode = new LinearNode<>(nyFilm);
 
-        if (antall == null) {
-            start = nynode;
-            antall = 0;
+        if (antall == 0) {
+            nynode = start;
         } else {
             nynode.setNeste(start);
             start = nynode;
-            antall++;
         }
-        //hvis film allerede ligger i arkiv   nyfilm.setneste = start
-        //start = nyfilm
-
+        antall++;
     }
 
     @Override
     public boolean slettFilm(int filmnr) {
         LinearNode<Film>aktuell = start;
-        boolean funnet = false;
+
 
         if (aktuell.getElement().getFilmnr() == filmnr){
             start = aktuell.getNeste();
+            antall--;
             return true;
         }
 
         while (aktuell.getNeste()!=null) {
             if (aktuell.getNeste().getElement().getFilmnr() == filmnr) {
                 aktuell.setNeste(aktuell.getNeste().getNeste());
+                antall--;
                 return true;
             }
             if (aktuell.getNeste().getNeste() == null) {
                 if (aktuell.getNeste().getElement().getFilmnr()==filmnr){
                     aktuell.getNeste().setNeste(null);
+                    antall--;
                     return true;
                 }
             }
+            aktuell = aktuell.getNeste();
         }
     return false;
 
@@ -60,22 +66,60 @@ public class Filmarkiv2 implements FilmarkivADT {
 
     @Override
     public Film[] soekTittel(String delstreng) {
-/*        LinearNode<Film>aktuell = start;
-        aktuell.getElement().getTittel()*/
+
+        Film[] returTabell = new Film[antall];
+        int funn = 0;
+        LinearNode<Film>aktuell = start;
+
+        for (int i = 0; i < returTabell.length; i++) {
+            if (aktuell.getElement().getTittel().contains(delstreng)) {
+                returTabell[funn] = aktuell.getElement();
+                funn++;
+            }
+            aktuell = aktuell.getNeste();
+        }
+        return returTabell;
+
+
     }
 
     @Override
     public Film[] soekProdusent(String delstreng) {
 
+        Film[] returTabell = new Film[antall];
+        int funn = 0;
+        LinearNode<Film>aktuell = start;
+
+        for (int i = 0; i < returTabell.length; i++) {
+            if (aktuell.getElement().getProdusent().contains(delstreng)) {
+                returTabell[funn] = aktuell.getElement();
+                funn++;
+            }
+            aktuell = aktuell.getNeste();
+        }
+        return returTabell;
     }
 
     @Override
     public int antall(Sjanger sjanger) {
-        return 0;
+        int antall = 0;
+        LinearNode<Film>aktuell = start;
+
+        while (aktuell.getNeste() != null) {
+            if (aktuell.getNeste().getElement().getSjanger().equals(sjanger)) {
+                antall++;
+            }
+        }
+        return antall;
     }
 
     @Override
     public int antall() {
+        int antall = 0;
+        LinearNode<Film>aktuell = start;
+        while (aktuell.getNeste() != null) {
+
+        }
         return antall;
     }
 }
