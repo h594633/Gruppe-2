@@ -99,7 +99,7 @@ NY ITERASJON
     }
 
     @Override
-    public boolean soekTittel(String delstreng) {
+    public Film[] soekTittel(String delstreng) {
 
         //antall funnede filmer
         int funn = 0;

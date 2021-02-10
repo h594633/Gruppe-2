@@ -56,23 +56,24 @@ public class Filmarkiv2 implements FilmarkivADT {
     }
 
     @Override
-    public boolean soekTittel(String delstreng) {
+    public Film[] soekTittel(String delstreng) {
 
-        LinearNode<Film>aktuell = start;
-        boolean funnet = false;
+        LinearNode<Film> aktuell = start;
 
-        if (aktuell.getElement().getTittel().toUpperCase().contains(delstreng.toUpperCase() == delstreng.toUpperCase()) {
-            //start = aktuell.getNeste();
-            return true;
-        }
+        Film[] midTab = new Film[];
 
-        while (!funnet && aktuell.getNeste()!=null) {
-            if (aktuell.getNeste().getElement().getTittel().toUpperCase().contains(delstreng.toUpperCase() == delstreng.toUpperCase()) {
-                return true;
+        for (int i = 0; i < antall; i++) {
+
+
+            if (aktuell.getElement().getTittel().toUpperCase().contains(delstreng.toUpperCase())) {
+
+                midTab[0] = aktuell.getElement();
+
+
             }
         }
 
-        return false;
+        return new Film[];
     }
 
     @Override
