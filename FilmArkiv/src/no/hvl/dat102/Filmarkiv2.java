@@ -62,18 +62,25 @@ public class Filmarkiv2 implements FilmarkivADT {
 
         Film[] midTab = new Film[];
 
+        int funnet = 0;
+
         for (int i = 0; i < antall; i++) {
 
+            //begynne på første node
 
             if (aktuell.getElement().getTittel().toUpperCase().contains(delstreng.toUpperCase())) {
-
-                midTab[0] = aktuell.getElement();
-
-
+            //sjekk om delstreng matcher toString
+            //hvis desltreng matcher toString, putt element i tabell, fortsett å gå gjennom noder
+                midTab[funnet] = aktuell.getElement();
+                funnet ++;
+            //hvis finner nytt element med delstreng som matcher toString, øk antall in med +1 på midTab og putt element i tab
+                aktuell = aktuell.getNeste();
+            //repeter ^ til det ikke er flere noder.
+            //løkke over, return midTab;
             }
         }
 
-        return new Film[];
+        return midTab;
     }
 
     @Override
