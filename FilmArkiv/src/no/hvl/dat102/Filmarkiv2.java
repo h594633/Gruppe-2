@@ -31,16 +31,12 @@ public class Filmarkiv2 implements FilmarkivADT {
 
         LinearNode<Film>nynode = new LinearNode<Film>(nyFilm);
 
-        if (antall == null) {
-            start = nynode;
-            antall = 0;
+        if (antall != 0) {
+            nynode.setNeste(start); }
 
-        } else {
-            nynode.setNeste(start);
-            start = nynode;
-            antall++;
+        start = nynode;
+        antall++;
         }
-    }
 
     @Override
     public boolean slettFilm(int filmnr) {
